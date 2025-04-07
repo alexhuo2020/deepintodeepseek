@@ -1,0 +1,8 @@
+prompt,chosen,rejected
+human do I like coffee . system,do,like
+human do I like tea . system,do,like
+human do I like tea . system,do,not
+human do I like tea . system,like,not
+human do You like coffee . system,not .,not like
+human do You like tea . system,like,do
+
