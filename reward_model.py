@@ -73,7 +73,7 @@ class RewardModel(nn.Module):
     
     def score(self, input_ids):
         with torch.no_grad():
-            return self.base(input_ids).logits.squeeze()
+            return self.model(input_ids).squeeze()
 
 def generate_sample(prompt, good_resp, bad_resp):
     return {

@@ -10,7 +10,7 @@ from generate import generate
 @dataclass
 class TrainConfig:
     lr: float = 1e-3
-    max_epochs: int = 3000
+    max_epochs: int = 2000
 
 class Tokenizer:
     def __init__(self):
@@ -41,7 +41,7 @@ def resize_token_embeddings(embed: nn.Embedding, num_new_tokens: int) -> nn.Embe
 
 if __name__ == '__main__':
     # preparing data
-    data = ["human do I like coffee . system do", "human do You like tea . system do", "human do I like tea . system do", "human do You like coffee . system not","human do I like coffee . system like", "human do You like coffee . system not like"]
+    data = ["human do I like coffee . system do", "human do You like tea . system do", "human do I like tea . system do", "human do You like coffee . system not","human do I like coffee . system like"]
     tokenizer = Tokenizer()
 
     train_ids = []
@@ -66,13 +66,14 @@ if __name__ == '__main__':
 
     # training
     losses = []
-    for epoch in range(1000):
+    for epoch in range(3000):
         for x, y in train_ids:
             _, loss = model(x.unsqueeze(0), y.unsqueeze(0))
             loss.backward()
             optimizer.step()
             optimizer.zero_grad()
             losses.append(loss.item())
+    torch.save(model.state_dict(), "model_sft.pt")
 
     import matplotlib.pyplot as plt 
     plt.plot(losses)
