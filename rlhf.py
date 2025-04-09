@@ -8,7 +8,7 @@ from generate import generate
 import numpy as np
 torch.autograd.set_detect_anomaly(True)
 # whether to use the supervised fine tuned model or not
-sft = True
+sft = False #True
 
 # 1. Define the Policy Model (pretrained LLM w/o fine tune)
 model = SimpleLLM(SimpleLLMConfig)
